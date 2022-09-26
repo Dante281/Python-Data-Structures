@@ -1,0 +1,27 @@
+#loading JSON file with an URL link
+
+#import libraries
+import json
+from urllib import request
+
+#url = "http://py4e-data.dr-chuck.net/comments_42.json" #line added for testing purposes
+
+url = input("Enter location: ") #Requesting the URL file
+print("Retrieving", url)    #printing URL
+op = request.urlopen(url)   #Opening the file into "op" opening
+file= op.read()
+print("Retrieved",len(file), "characters") #Pringting Retrieved characters
+data = json.loads(file)
+
+#print(data["comments"])
+
+sum=0
+count=0
+
+#Defining a loop over the data to get the info requested
+for letter in data["comments"]:
+    number = int(letter["count"])
+    count += 1
+    sum = sum + number
+print("count:",count)
+print("Sum:",sum)
